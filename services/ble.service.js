@@ -3,6 +3,7 @@
 const config = require('config');
 const noble = require('noble');
 
+const KalmanService = require('../mixins/kalman.mixin');
 const LowPassService = require('../mixins/lowpass.mixin');
 const ThrottledService = require('../mixins/throttled.mixin');
 const WhitelistService = require('../mixins/whitelist.mixin');
@@ -55,7 +56,8 @@ module.exports = {
                 const maxDistance = this.settings.maxDistance;
 
                 if (!maxDistance || distance <= maxDistance) {
-                    const filteredDistance = this.smoothData(handle, distance);
+                    const kalmanDistance = this.smoothData(handle, distance);
+                    const filteredDistance = this.lowPass(handle, kalmanDistance);
 
                     const payload = {
                         channel: this.settings.channel,

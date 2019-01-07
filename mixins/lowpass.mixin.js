@@ -5,7 +5,7 @@ LPF.smoothing = 0.5;
 
 module.exports = {
     methods: {
-        smoothData(item, value) {
+        lowPass(item, value) {
             const lpf = this.lpf.has(item) ? this.lpf.get(item) : LPF.init([]);
 
             if (!this.lpf.has(item)) {
