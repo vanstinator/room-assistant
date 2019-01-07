@@ -11,7 +11,7 @@ const WhitelistService = require('../mixins/whitelist.mixin');
 module.exports = {
     name: 'ble',
 
-    mixins: [LowPassService, ThrottledService, WhitelistService],
+    mixins: [KalmanService, LowPassService, ThrottledService, WhitelistService],
 
     settings: {
         frequency: config.get('ble.updateFrequency'),
