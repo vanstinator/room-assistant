@@ -3,14 +3,14 @@
 const config = require('config');
 const noble = require('noble');
 
-const KalmanService = require('../mixins/kalman.mixin');
+const LowPassService = require('../mixins/lowpass.mixin');
 const ThrottledService = require('../mixins/throttled.mixin');
 const WhitelistService = require('../mixins/whitelist.mixin');
 
 module.exports = {
     name: 'ble',
 
-    mixins: [KalmanService, ThrottledService, WhitelistService],
+    mixins: [LowPassService, ThrottledService, WhitelistService],
 
     settings: {
         frequency: config.get('ble.updateFrequency'),
